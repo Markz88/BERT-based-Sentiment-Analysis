@@ -5,7 +5,7 @@ This repository provides a BERT-based sentiment classifier. The goal of this pro
 
 ## Repository Structure
 ```
-BERT-SentAnalysis/
+BERT-based-Sentiment-Analysis/
 ├── data/
 │   ├── train.csv
 │   ├── val.csv
@@ -37,8 +37,8 @@ To run this project, you need to install the required dependencies.
 
 ### Clone the Repository
 ```bash
- git clone https://github.com/yourusername/BERT-Sentiment-Analysis.git
- cd BERT-Sentiment-Analysis
+ git clone https://github.com/Markz88/BERT-based-Sentiment-Analysis.git
+ cd BERT-based-Sentiment-Analysis
 ```
 
 ### Install Dependencies
