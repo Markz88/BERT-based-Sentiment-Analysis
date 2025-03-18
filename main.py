@@ -75,7 +75,11 @@ if __name__ == '__main__':
                 
                 torch.save(model.state_dict(), 'models/bert_sentiment_model.pth') # save model
     else:
-        # Evaluate mode
-        model.load_state_dict(torch.load('models/bert_sentiment_model.pth'))
+        # Evaluation mode
+        if DEVICE.type == "cpu":
+            model.load_state_dict(torch.load('models/bert_sentiment_model.pth', map_location=DEVICE)) # load trained model
+        else:
+            model.load_state_dict(torch.load('models/bert_sentiment_model.pth')) # load trained model
+            
         eval_acc, eval_report = evaluate_model(model, test_loader, DEVICE, phase='test')
         print(f'Accuracy: {eval_acc:.2f}\n\n{eval_report}')

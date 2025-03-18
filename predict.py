@@ -10,8 +10,12 @@ DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu") # device
 
 tokenizer = BertTokenizer.from_pretrained(BERT_MODEL_NAME) # BERT tokenizer
 model = SentimentClassifier(BERT_MODEL_NAME, NUM_CLASSES).to(DEVICE) # BERT sentiment classifier model
-model.load_state_dict(torch.load('models/bert_sentiment_model.pth')) # load trained model
 
+if DEVICE.type == "cpu":
+    model.load_state_dict(torch.load('models/bert_sentiment_model.pth', map_location=DEVICE)) # load trained model
+else:
+    model.load_state_dict(torch.load('models/bert_sentiment_model.pth')) # load trained model
+    
 # Predict sentiment from text
 def predict_sentiment(model, tokenizer, text, device, max_len=512):
     model = model.eval() # set model to evaluation mode
