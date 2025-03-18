@@ -1,7 +1,6 @@
 numpy
-os
 pandas
-sklearn
+scikit-learn
 torch
 tqdm
 transformers
