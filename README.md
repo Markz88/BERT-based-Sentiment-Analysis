@@ -7,9 +7,12 @@ This repository provides a BERT-based sentiment classifier. The goal of this pro
 ```
 BERT-based-Sentiment-Analysis/
 ├── data/
-│   ├── train.csv
-│   ├── val.csv
-│   ├── test.csv
+│   ├── train.csv # Training set
+│   ├── val.csv # Validation set
+│   ├── test.csv # Test set
+│
+├── src/
+│   ├── bert_sentiment_model.pth  # Pre-trained model
 │
 ├── src/
 │   ├── dataset.py  # Handles dataset loading and preprocessing
@@ -130,11 +133,38 @@ docker run -it name:tag python predict.py --text "Your app review here"
 You can also enable GPU support (if available and your Docker setup allows it) by running:
 
 ```bash
-docker run --gpus all -it name:tag python main.py --text "Your app review here"
+docker run --gpus all -it name:tag python predict.py --text "Your app review here"
 ```
 
 Replace `"Your app review here"` with the review you want to classify. The script will output the predicted sentiment.
 
+## Using the Pre-trained Model
+
+If you want to use the sentiment classifier without retraining, a pre-trained model is provided in the `models/` directory. This model has already been fine-tuned on the Google Play Store reviews dataset.
+
+### Inference with the Pre-trained Model
+
+You can directly use the `predict.py` script to make predictions with the pre-trained model:
+
+```bash
+python predict.py --text "Your app review here"
+```
+
+### Using Docker with Pre-trained Model
+
+If you're using Docker, make sure to **mount the `models/` directory** into the container so the model can be accessed:
+
+```bash
+docker run -it -v $(pwd)/models:/app/models name:tag python predict.py --text "Your app review here"
+```
+
+Or with GPU support:
+
+```bash
+docker run --gpus all -it -v $(pwd)/models:/app/models name:tag python predict.py --text "Your app review here"
+```
+
+This will load the model from the mounted volume and output the predicted sentiment.
 
 ## License
 This project is open-source and available under the MIT License.
