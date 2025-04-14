@@ -11,7 +11,7 @@ BERT-based-Sentiment-Analysis/
 │   ├── val.csv # Validation set
 │   ├── test.csv # Test set
 │
-├── src/
+├── models/
 │   ├── bert_sentiment_model.pth  # Pre-trained model
 │
 ├── src/
